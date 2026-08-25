@@ -1,0 +1,91 @@
+[
+  {
+    "id": "st-01",
+    "name": "Selsela Crowd Management (سلسلة لإدارة الحشود)",
+    "description": "An AI-powered system that tracks pilgrim density, predicts bottlenecks in crowd movement, and optimizes pedestrian flow routes around holy sites in Makkah.",
+    "sector": "Hajj & Umrah Tech",
+    "country": "Saudi Arabia",
+    "url": "https://wadimakkah.sa/selsela",
+    "technologies": ["Computer Vision", "Deep Learning", "IoT Sensors", "Pedestrian Flow Simulation"]
+  },
+  {
+    "id": "st-02",
+    "name": "Nala Health (نالا للرعاية الصحية)",
+    "description": "A digital health platform utilizing AI to offer instant medical diagnosis, connect patients with doctors, and monitor chronic health conditions locally in Saudi Arabia.",
+    "sector": "HealthTech & Biotech",
+    "country": "Saudi Arabia",
+    "url": "https://nala.ai",
+    "technologies": ["Natural Language Processing", "Expert Systems", "Telemedicine", "AI Diagnostics"]
+  },
+  {
+    "id": "st-03",
+    "name": "Edama Organic Solutions (إدامة للحلول العضوية)",
+    "description": "Provides waste recycling solutions designed specifically for arid climates, converting municipal waste into organic soil amendments for agriculture.",
+    "sector": "Clean Energy & Environment",
+    "country": "Saudi Arabia",
+    "url": "https://edama.solutions",
+    "technologies": ["Biotechnology", "Waste Management", "Organic Composting", "Sustainable Agriculture"]
+  },
+  {
+    "id": "st-04",
+    "name": "Falcon AI Systems (فالكون للذكاء الاصطناعي)",
+    "description": "Develops computer vision models for retail analytics, traffic monitoring, and safety compliance in smart cities.",
+    "sector": "Smart Infrastructure & IoT",
+    "country": "Saudi Arabia",
+    "url": "https://falcons.ai",
+    "technologies": ["Computer Vision", "Edge AI", "Deep Learning", "Video Analytics"]
+  },
+  {
+    "id": "st-05",
+    "name": "RedSea Farms (مزارع البحر الأحمر)",
+    "description": "An agritech company providing saltwater greenhouse technology and plant genetics to enable farming in hot, dry, and coastal regions using seawater.",
+    "sector": "Clean Energy & Environment",
+    "country": "Saudi Arabia",
+    "url": "https://redseafarms.com",
+    "technologies": ["Agritech", "Genetics", "Desalination Systems", "IoT Irrigation"]
+  },
+  {
+    "id": "st-06",
+    "name": "Labiba AI (لبيبة للذكاء الاصطناعي)",
+    "description": "A conversational AI platform providing Arabic chatbots, voice assistants, and sentiment analysis for customer support and pilgrim inquiry services.",
+    "sector": "Islamic Finance & Digital Economy",
+    "country": "Jordan/Saudi Arabia",
+    "url": "https://labiba.ai",
+    "technologies": ["Natural Language Processing", "Arabic NLP", "Speech Recognition", "Chatbots"]
+  },
+  {
+    "id": "st-07",
+    "name": "Geidea Payment Solutions (جيديا للمدفوعات)",
+    "description": "A leading Saudi fintech startup offering digital payment terminals, POS terminals, and e-commerce payment gateways to SMEs.",
+    "sector": "Islamic Finance & Digital Economy",
+    "country": "Saudi Arabia",
+    "url": "https://geidea.net",
+    "technologies": ["Fintech", "Payment Gateways", "Smart POS", "Financial Security"]
+  },
+  {
+    "id": "st-08",
+    "name": "HajjGuider (دليل الحج)",
+    "description": "An offline GPS-guided wearable and application that tracks pilgrim groups, aids navigation in Mina/Arafat, and sends panic alerts to camp managers without internet.",
+    "sector": "Hajj & Umrah Tech",
+    "country": "Pakistan/Saudi Arabia",
+    "url": "https://hajjguider.com",
+    "technologies": ["IoT Wearables", "Geofencing", "Mesh Networking", "Offline Navigation"]
+  },
+  {
+    "id": "st-09",
+    "name": "NOMW Ventures (مشاريع نمو)",
+    "description": "A crowdfunding and digital investment platform designed for micro-investment and supporting local startups aligned with Vision 2030.",
+    "sector": "Islamic Finance & Digital Economy",
+    "country": "Saudi Arabia",
+    "url": "https://nomw.sa",
+    "technologies": ["Fintech", "Crowdfunding Platforms", "Blockchain Credentials", "Smart Contracts"]},
+  {
+    "id": "st-10",
+    "name": "Lucidya (لوسيديا)",
+    "description": "An AI-powered social media listening tool analyzing Arabic dialects in real-time, helping businesses and entities track customer experience.",
+    "sector": "Smart Infrastructure & IoT",
+    "country": "Saudi Arabia",
+    "url": "https://lucidya.com",
+    "technologies": ["Arabic Dialect NLP", "Social Listening", "Big Data", "Sentiment Analysis"]
+  }
+]

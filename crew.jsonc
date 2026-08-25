@@ -129,7 +129,7 @@
       "agent": "ai_investment_assistance",
 
       // Task outputs used as context
-      "context": ["analyze_ksa_investment_opportunities_task", "evaluate_the_student_project_task"]
+      "context": [ "evaluate_the_student_project_task"]
 
       // "tools": [],
       // "human_input": false,
@@ -173,7 +173,7 @@
       "agent": "ai_investment_assistance",
 
       // Task outputs used as context
-      "context": ["analyze_ksa_investment_opportunities_task", "evaluate_the_student_project_task", "identify_and_recommend_the_task"]
+      "context": [ "identify_and_recommend_the_task"]
 
       // "tools": [],
       // "human_input": false,
@@ -217,7 +217,7 @@
       "agent": "ai_investment_assistance",
 
       // Task outputs used as context
-      "context": ["analyze_ksa_investment_opportunities_task", "evaluate_the_student_project_task", "identify_and_recommend_the_task", "generate_and_send_an_task"]
+      "context": [ "identify_and_recommend_the_task"]
 
       // "tools": [],
       // "human_input": false,
@@ -261,7 +261,7 @@
       "agent": "ai_investment_assistance",
 
       // Task outputs used as context
-      "context": ["analyze_ksa_investment_opportunities_task", "evaluate_the_student_project_task", "identify_and_recommend_the_task", "generate_and_send_an_task", "if_no_suitable_incubator_task"]
+      "context": ["if_no_suitable_incubator_task"]
 
       // "tools": [],
       // "human_input": false,
@@ -279,7 +279,7 @@
   "verbose": true,
 
   // Enable crew memory — persists context and learnings across tasks
-  "memory": true,
+  "memory": false,
 
   // Automatically plan the execution strategy before running tasks
   // "planning": false,
@@ -301,8 +301,8 @@
   // "before_kickoff_callbacks": [{"python": "my_project.callbacks.before_kickoff"}],
   // "after_kickoff_callbacks": [{"python": "my_project.callbacks.after_kickoff"}],
   // "function_calling_llm": "openai/gpt-4o-mini",
-  // "max_rpm": null,
-  // "cache": true,
+  "max_rpm": 10,
+  "cache": true,
   // "knowledge_sources": [],
   // "embedder": {},
   // "output_log_file": "crew.log",

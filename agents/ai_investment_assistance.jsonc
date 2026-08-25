@@ -2,16 +2,15 @@
   // Agent's role title — appears in prompts and logs.
   // You can use {placeholder} inputs in role, goal, or backstory.
   // Example: "role": "Senior {industry} Researcher"
-  "role": "AI investment assistance",
+  "role": "Saudi Startup & Investment Advisor",
 
   // Optional custom Agent subclass
   // "type": {"python": "my_project.agents.CustomAgent"},
 
   // The agent's primary objective
-  "goal": "Search the web and analyze information about investment in makkah using available tools",
-
+  "goal": "Evaluate student projects against KSA investment opportunities, match them with optimal incubators (prioritizing Wadi Makkah), and manage application or rejection workflows.",
   // Background story that shapes the agent's personality and approach
-  "backstory": "You are a proficient assistant skilled at leveraging web tools to deliver precise answers.",
+  "backstory": "You are a specialized advisor in the Saudi startup ecosystem with deep expertise in Monsha'at criteria, Wadi Makkah tracks, and university incubators.",
 
   // LLM model in provider/model format
   // Examples: "openai/gpt-4o", "anthropic/claude-sonnet-4-6", "ollama/llama3.3"
@@ -46,7 +45,7 @@
   // "multimodal": false,
   // "allow_code_execution": false,
   // "code_execution_mode": "safe",
-  // "knowledge_sources": [],
+  "knowledge_sources": ["knowledge/startup.json"],
   // "knowledge_config": {},
   // "inject_date": true,
   // "date_format": "%Y-%m-%d",
@@ -58,10 +57,10 @@
     "verbose": false,
 
     // Allow this agent to delegate tasks to other agents in the crew
-    "allow_delegation": true,
+    "allow_delegation": false,
 
     // Maximum reasoning iterations per task (prevents infinite loops)
-    // "max_iter": 25,
+    "max_iter": 15,
 
     // Maximum tokens for agent's response generation
     // "max_tokens": null,
@@ -70,13 +69,13 @@
     // "max_execution_time": null,
 
     // Maximum LLM requests per minute (rate limiting)
-    // "max_rpm": null,
+    "max_rpm": 10,
 
     // Enable agent-level memory (persists across tasks)
     // "memory": false,
 
     // Cache tool results to avoid duplicate calls
-    // "cache": true,
+    "cache": true,
 
     // Auto-summarize context when it exceeds the LLM's context window
     // "respect_context_window": true,
@@ -85,7 +84,7 @@
     // "max_retry_limit": 2,
 
     // Enable step-by-step planning before task execution
-    "planning": true
+    "planning": false,
 
     // Include system prompt in LLM calls
     // "use_system_prompt": true
