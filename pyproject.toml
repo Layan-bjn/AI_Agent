@@ -1,0 +1,21 @@
+[project]
+name = "ai_agent"
+version = "0.1.0"
+description = "AI_Agent using crewAI"
+authors = [{ name = "Layan Bajandooh", email = "Layan.m.bajandooh@gmail.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[google-genai,tools]>=1.15.17,<2.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["agents", "crew.jsonc", "tools", "knowledge", "skills"]
+
+[tool.crewai]
+type = "crew"
+definition = "crew.jsonc"
+project_id = "d7883371-512b-42da-8750-8173d2c1e444"
