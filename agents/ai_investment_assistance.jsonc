@@ -45,7 +45,7 @@
   // "multimodal": false,
   // "allow_code_execution": false,
   // "code_execution_mode": "safe",
-  "knowledge_sources": ["knowledge/startup.json"],
+  // "knowledge_sources": ["knowledge/startup.json"],
   // "knowledge_config": {},
   // "inject_date": true,
   // "date_format": "%Y-%m-%d",
@@ -54,7 +54,7 @@
   // Agent behavior settings
   "settings": {
     // Show detailed execution logs
-    "verbose": false,
+    "verbose": true,
 
     // Allow this agent to delegate tasks to other agents in the crew
     "allow_delegation": false,
