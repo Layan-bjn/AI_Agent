@@ -60,7 +60,7 @@
   ],
 
   "process": "hierarchical",
-
+  "manager_llm": "gemini-3.1-flash-lite",
   "verbose": true,
 
   "memory": false,
