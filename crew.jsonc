@@ -1,35 +1,75 @@
 {
-  // Display name for this crew
   "name": "AI_Agent",
 
-  // Agents to include — each must have a matching agents/<name>.jsonc file
-  "agents": ["ai_investment_assistance"],
+  "agents": [
+    "investment_orchestrator",
+    "feasibility_agent",
+    "startup_matching_agent",
+    "incubator_agent",
+    "quality_control_agent"
+  ],
 
   "tasks": [
     {
-      "name": "evaluate_and_match_incubator_task",
+      "name": "feasibility_task",
 
-      "description": "The student's project idea is: {project_idea}. Read 'knowledge/startup.json' for context. Conduct ONE feasibility assessment (technical + commercial) to give a PASS or FAIL verdict. If PASS, you MUST first search 'knowledge/startup.json' for an existing startup in the same domain/technologies (e.g. Hajj Tech, Crowd Management, Computer Vision). If a matching startup exists in 'knowledge/startup.json', you MUST select its exact name from the file and cite it without searching the web. ONLY if zero relevant startups match in 'knowledge/startup.json', execute a SINGLE web search for an active Saudi incubator/accelerator. If FAIL, skip both matching and searching, and state the primary reason for rejection.",
-      "expected_output": "A short report with 3 numbered sections: (1) Idea Summary — one line. (2) Verdict — literally PASS or FAIL plus 1-2 sentences of reasoning. (3) If PASS: one recommended matching startup (from startup.json) or incubator/accelerator name with a one-line justification. If FAIL: one-line rejection reason instead.",
+      "description": "Evaluate the student's project idea: {project_idea}. Assess technical feasibility and commercial feasibility. Identify the main technical risks, commercial risks, and overall feasibility. Return a structured PASS or FAIL verdict.",
 
-      "guardrail": "No markdown characters (*, #, _, `). Must contain the literal word PASS or FAIL in section 2. If FAIL, no incubator name should appear. If PASS, exactly one incubator name must appear, sourced from the search result.",
+      "expected_output": "A structured feasibility assessment containing technical_score, commercial_score, overall_score, verdict, and primary_reason.",
 
-      "guardrail_max_retries": 3,
-      "markdown": false,
-      "agent": "ai_investment_assistance",
+      "agent": "feasibility_agent",
+
+      "tools": []
+    },
+
+    {
+      "name": "startup_matching_task",
+
+      "description": "Only execute this task when the feasibility verdict is PASS. Read knowledge/startup.json using FileReadTool. Compare the student's project with the startups in the file using domain, technologies, problem, target market, and use-case similarity. If a relevant startup exists, select exactly one startup and return its exact name as written in startup.json. Do not invent or modify startup names. Do not perform web searches.",
+
+      "expected_output": "A structured startup matching result containing match_found, startup_name, and justification.",
+
+      "agent": "startup_matching_agent",
+
+      "tools": ["FileReadTool"]
+    },
+
+    {
+      "name": "incubator_task",
+
+      "description": "Only execute this task when the feasibility verdict is PASS and the startup matching agent found zero relevant startups. Use SerperDevTool exactly once to find one active Saudi Arabian incubator or accelerator relevant to the student's project. Return exactly two most relevant recommended incubator or accelerator.",
+
+      "expected_output": "A structured incubator recommendation containing incubator_name, justification, and source.",
+
+      "agent": "incubator_agent",
+
       "tools": ["SerperDevTool"]
+    },
+
+    {
+      "name": "quality_control_task",
+
+      "description": "Review the outputs from the feasibility, startup matching, and incubator agents. Verify that the workflow was followed correctly. If FAIL, there must be no startup or incubator recommendation. If PASS with a startup match, there must be exactly one  startup recommendations and no incubator. If PASS with no startup match, there must be exactly two most relevant incubator recommendations. Do not invent missing information.",
+
+      "expected_output": "A validated final report with Idea Summary, Verdict, and Recommendation or rejection reason.",
+
+      "agent": "quality_control_agent",
+
+      "tools": []
     }
   ],
 
-  "process": "sequential",
-  "verbose": true,
-  "memory": false,
-  "max_rpm": 5,
-  "cache": true,
+  "process": "hierarchical",
 
-  // Runtime input — crewai run will prompt for this if not filled in here
-  // {project_idea} is used inside the task description above
+  "verbose": true,
+
+  "memory": false,
+
+  "max_rpm": 5,
+
+  "cache": false,
+
   "inputs": {
-    "project_ideas": "Project 1: An AI-powered edge computing platform that integrates with existing industrial HVAC systems to dynamically optimize power consumption in commercial facilities, leveraging Saudi smart grid APIs and carbon credit monetization. | Project 2: A blockchain-powered telepathic headset that uses non-invasive brainwave decoding to trade cryptocurrency automatically while sleeping, funded by minting user dreams as dynamic NFTs.",
+    "project_idea": "An AI-powered edge computing platform that integrates with existing industrial HVAC systems to dynamically optimize power consumption in commercial facilities, leveraging Saudi smart grid APIs and carbon credit monetization."
   }
 }
