@@ -69,7 +69,7 @@
     // "max_execution_time": null,
 
     // Maximum LLM requests per minute (rate limiting)
-    "max_rpm": 10,
+    "max_rpm": 5,
 
     // Enable agent-level memory (persists across tasks)
     // "memory": false,

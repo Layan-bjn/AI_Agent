@@ -9,18 +9,14 @@
     {
       "name": "evaluate_and_match_incubator_task",
 
+      "description": "The student's project idea is: {project_idea}. Read 'knowledge/startup.json' for context. Conduct ONE feasibility assessment (technical + commercial) to give a PASS or FAIL verdict. If PASS, you MUST first search 'knowledge/startup.json' for an existing startup in the same domain/technologies (e.g. Hajj Tech, Crowd Management, Computer Vision). If a matching startup exists in 'knowledge/startup.json', you MUST select its exact name from the file and cite it without searching the web. ONLY if zero relevant startups match in 'knowledge/startup.json', execute a SINGLE web search for an active Saudi incubator/accelerator. If FAIL, skip both matching and searching, and state the primary reason for rejection.",
+      "expected_output": "A short report with 3 numbered sections: (1) Idea Summary — one line. (2) Verdict — literally PASS or FAIL plus 1-2 sentences of reasoning. (3) If PASS: one recommended matching startup (from startup.json) or incubator/accelerator name with a one-line justification. If FAIL: one-line rejection reason instead.",
 
-"description": "Evaluate the idea: '{project_idea}'. Step 1: Use FileReadTool once on 'knowledge/startup.json' to check feasibility. Step 2: If feasible, run exactly ONE search query with SerperDevTool to find the top matching Saudi incubator or companies. If not feasible, skip search and write a rejection reason.",
+      "guardrail": "No markdown characters (*, #, _, `). Must contain the literal word PASS or FAIL in section 2. If FAIL, no incubator name should appear. If PASS, exactly one incubator name must appear, sourced from the search result.",
 
-"expected_output": "A concise report: (1) Verdict (PASS/FAIL with brief rationale). (2) If PASS: Best incubator/companies found. If FAIL: Rejection message.",
-
-      "guardrail": "Output must contain no markdown formatting characters (*, #, _, `). It must be organized into clearly labeled, numbered sections exactly as described in expected_output. Section 2 must contain the literal word 'PASS' or 'FAIL'. If the verdict is FAIL, the output must NOT contain any incubator names or an application payload. If the verdict is PASS, the output must contain at least one specific incubator name backed by a web search result, plus a draft application payload — never an invented incubator. Every factual claim about incubators must trace back to a SerperDevTool result or the knowledge file.",
-
-      "guardrail_max_retries": 2,
+      "guardrail_max_retries": 3,
       "markdown": false,
       "agent": "ai_investment_assistance",
-
-      // Web search tool for finding real KSA incubators/accelerators
       "tools": ["SerperDevTool"]
     }
   ],
@@ -34,6 +30,6 @@
   // Runtime input — crewai run will prompt for this if not filled in here
   // {project_idea} is used inside the task description above
   "inputs": {
-    "project_idea": "A mobile app that connects Saudi university students with local farmers to reduce food waste by rescuing unsold produce at discounted prices."
+    "project_ideas": "Project 1: An AI-powered edge computing platform that integrates with existing industrial HVAC systems to dynamically optimize power consumption in commercial facilities, leveraging Saudi smart grid APIs and carbon credit monetization. | Project 2: A blockchain-powered telepathic headset that uses non-invasive brainwave decoding to trade cryptocurrency automatically while sleeping, funded by minting user dreams as dynamic NFTs.",
   }
 }
