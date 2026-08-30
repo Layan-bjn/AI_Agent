@@ -9,37 +9,31 @@
   ],
 
   "manager_agent": "investment_orchestrator",
-  "manager_llm": "gemini-2.5-flash",
+  "manager_llm": "gemini/gemini-3.6-flash",
 
   "tasks": [
     {
       "name": "feasibility_task",
       "description": "Evaluate the student's project idea: {project_idea}. Assess technical and commercial feasibility, noting the main risks. Return a structured PASS or FAIL verdict with concise reasoning.",
       "expected_output": "A structured feasibility assessment containing technical_score, commercial_score, overall_score, verdict (PASS or FAIL), and primary_reason.",
-      "guardrail": "Must strictly contain either the word PASS or FAIL. The primary_reason must not exceed two sentences.",
-      "guardrail_max_retries": 1,
       "agent": "feasibility_agent",
       "tools": []
     },
 
-    {
-      "name": "startup_matching_task",
-      "description": "If feasibility verdict is PASS: Read knowledge/startup.json using FileReadTool. Compare the project against the startups using domain, tech stack, and use case. If a match exists, copy its exact name verbatim as written in knowledge/startup.json. Do NOT invent startup names or perform web searches. If no match exists or verdict is FAIL, return match_found as false.",
-      "expected_output": "A structured startup matching result containing match_found (true/false), startup_name, and justification.",
-      "guardrail": "Must return a valid result with match_found, startup_name, and justification. If match_found is false, startup_name must be null.",
-      "guardrail_max_retries": 1,
-      "agent": "startup_matching_agent",
-      "context": ["feasibility_task"],
-      "tools": ["FileReadTool"]
+   {
+  "name": "startup_matching_task",
+  "description": "If feasibility verdict is PASS: Read knowledge/startup.json using FileReadTool. Match the idea against the startups. Guardrail: You MUST copy the exact value from the 'name' field in startup.json verbatim (e.g., 'Selsela Crowd Management (سلسلة لإدارة الحشود)'). Do NOT translate, summarize, or alter the startup name. If no match exists or verdict is FAIL, return match_found as false.",
+  "expected_output": "The exact 'name' string directly from startup.json, match_found (true/false), and justification.",
+  "agent": "startup_matching_agent",
+  "context": ["feasibility_task"],
+  "tools": ["FileReadTool"]
+},
 
-    },
 
     {
       "name": "incubator_task",
       "description": "If feasibility verdict is PASS AND startup_matching_task found no relevant startup: Use SerperDevTool once to find active Saudi incubators/accelerators relevant to the sector. Return the top matching incubator. If a startup was already matched or verdict is FAIL, skip searching.",
       "expected_output": "A structured incubator recommendation containing incubator_name, justification, and source URL.",
-      "guardrail": "Must return exactly one active Saudi Arabian incubator or accelerator entity. Must not execute more than one search query.",
-      "guardrail_max_retries": 1,
       "agent": "incubator_agent",
       "context": ["feasibility_task", "startup_matching_task"],
       "tools": ["SerperDevTool"]
@@ -49,7 +43,7 @@
       "name": "quality_control_task",
       "description": "Review the outputs from feasibility_task, startup_matching_task, and incubator_task. Compile the final validated report. If FAIL: provide the idea summary, FAIL verdict, and rejection reason with no recommendations. If PASS with startup match: provide idea summary, PASS verdict, and the matched startup name with justification (no incubator). If PASS with no startup match: provide idea summary, PASS verdict, and the recommended incubator from the search.",
       "expected_output": "The final report formatted strictly as 3 numbered sections: 1. Idea Summary, 2. Verdict, 3. Recommendation or Rejection Reason.",
-      "guardrail": "No markdown characters (*, #, _, `). Must follow the exact 3 numbered sections. If Verdict is FAIL, section 3 must only contain the rejection reason and no startup or incubator names. If PASS, section 3 must contain exactly one matching startup or incubator name.",
+      "guardrail": "No markdown characters (*, #, _, `).Must contain 3 numbered sections (1, 2, and 3) and the literal word PASS or FAIL.",
       "guardrail_max_retries": 1,
       "markdown": false,
       "agent": "quality_control_agent",
@@ -61,10 +55,10 @@
   "process": "hierarchical",
   "verbose": true,
   "memory": false,
-  "max_rpm": 5,
+  "max_rpm": 2,
   "cache": false,
 
   "inputs": {
-    "project_idea": "A computer vision and deep learning platform that processes overhead camera feeds and IoT sensor data in real time to simulate pedestrian flow, detect crowd bottlenecks early, and dynamically optimize walking routes around high-density religious and public gathering zones"
+    "project_idea": "A computer vision and deep learning platform that processes overhead camera feeds and IoT sensor data in real time to simulate pedestrian flow, detect crowd bottlenecks early, and dynamically optimize walking routes around high-density religious and public gathering zones."
   }
 }
