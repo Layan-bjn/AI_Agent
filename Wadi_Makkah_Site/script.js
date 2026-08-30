@@ -35,7 +35,7 @@
      // "recommendation": null
    }
 --------------------------------------------------------- */
-const AGENT_API_URL = ""; // <-- ضع هنا رابط سيرفر الـ crew، مثال: "http://localhost:8000/analyze"
+const AGENT_API_URL = "http://127.0.0.1:8000"; // <-- ضع هنا رابط سيرفر الـ crew، مثال: "http://localhost:8000/analyze"
 
 async function analyzeWithAgent(payload) {
   const project_idea =
