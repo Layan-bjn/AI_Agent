@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ارفع مشروع تخرجك — وادي مكة للتقنية</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="brand-wave"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 38 C10 20, 18 20, 26 38 C34 56, 42 4, 50 38 C58 56, 66 20, 74 38 C82 56, 90 30, 98 38"
+              fill="none" stroke="url(#navGrad)" stroke-width="9" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="navGrad" x1="0" y1="0" x2="100" y2="0">
+            <stop offset="0%" stop-color="#8DC63F"/>
+            <stop offset="22%" stop-color="#29B6E8"/>
+            <stop offset="48%" stop-color="#F5A623"/>
+            <stop offset="70%" stop-color="#233E8B"/>
+            <stop offset="100%" stop-color="#96479A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="brand-name">
+        <b>شركة وادي مكة للتقنية</b>
+        <span>Wadi Makkah Company For Technology</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">رفع مشروع</a>
+      <a href="projects.html">المشاريع</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> منصة مشاريع التخرج</div>
+      <h1>ارفع مشروع تخرجك، ودع <span class="grad">الوكيل الذكي</span> يحلله لك</h1>
+      <p class="lead">
+        عبّي بيانات مشروعك وارفع ملفاته، وراح يقوم الوكيل الذكي بتحليله مباشرة
+        وعرض النتائج، ثم يضاف تلقائياً إلى قائمة مشاريع التخرج العامة.
+      </p>
+      <div class="hero-actions">
+        <a href="#uploadCard" class="btn btn-primary">ابدأ الرفع الآن</a>
+        <a href="projects.html" class="btn btn-ghost">تصفّح المشاريع</a>
+      </div>
+    </div>
+
+    <div class="hero-wave-art">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 210 C60 100, 100 100, 140 210 C180 320, 220 20, 260 210 C300 320, 340 100, 380 210"
+              fill="none" stroke="#F5A623" stroke-width="26" stroke-linecap="round" opacity=".92"/>
+        <path d="M20 230 C60 320, 100 320, 140 230 C180 140, 220 340, 260 230 C300 140, 340 300, 380 230"
+              fill="none" stroke="#29B6E8" stroke-width="26" stroke-linecap="round" opacity=".85"/>
+        <path d="M20 250 C60 190, 100 190, 140 250 C180 310, 220 160, 260 250 C300 310, 340 190, 380 250"
+              fill="none" stroke="#96479A" stroke-width="22" stroke-linecap="round" opacity=".8"/>
+        <path d="M40 270 C80 230, 110 230, 150 270 C190 310, 210 200, 250 270 C290 310, 320 230, 360 270"
+              fill="none" stroke="#8DC63F" stroke-width="18" stroke-linecap="round" opacity=".75"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="upload-section">
+  <div class="container">
+    <div class="card upload-card" id="uploadCard">
+      <div class="upload-card-top"></div>
+      <div class="upload-card-body">
+        <h2 class="section-title">بيانات المشروع</h2>
+        <p class="section-sub">كل الحقول المميّزة بـ * مطلوبة قبل بدء التحليل.</p>
+
+        <form id="uploadForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="projectName">اسم المشروع *</label>
+              <input type="text" id="projectName" placeholder="مثال: نظام تتبع ذكي للمخزون">
+            </div>
+            <div class="field">
+              <label for="studentName">اسم الطالب / الفريق *</label>
+              <input type="text" id="studentName" placeholder="مثال: عبدالله القرشي">
+            </div>
+            <div class="field">
+              <label for="department">القسم *</label>
+              <select id="department">
+                <option value="">اختر القسم</option>
+                <option>علوم حاسب</option>
+                <option>هندسة حاسب</option>
+                <option>نظم معلومات</option>
+                <option>هندسة كهربائية</option>
+                <option>هندسة ميكانيكية</option>
+                <option>أخرى</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="studentEmail">البريد الإلكتروني <span class="hint">(اختياري)</span></label>
+              <input type="email" id="studentEmail" placeholder="name@example.com">
+            </div>
+            <div class="field full">
+              <label for="description">وصف مختصر للمشروع</label>
+              <textarea id="description" placeholder="اشرح فكرة المشروع، المشكلة التي يحلها، والتقنيات المستخدمة…"></textarea>
+            </div>
+          </div>
+
+          <div class="field full" style="margin-bottom:10px;">
+            <label>ملفات المشروع *</label>
+            <div class="dropzone" id="dropzone" tabindex="0">
+              <svg class="dz-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 35 C10 20, 15 20, 20 35 C25 50, 30 8, 35 35 C40 50, 45 20, 50 35 C52 40, 55 32, 58 35"
+                      stroke="url(#dzGrad)" stroke-width="5" stroke-linecap="round" fill="none"/>
+                <defs>
+                  <linearGradient id="dzGrad" x1="0" y1="0" x2="60" y2="0">
+                    <stop offset="0%" stop-color="#F5A623"/>
+                    <stop offset="50%" stop-color="#29B6E8"/>
+                    <stop offset="100%" stop-color="#96479A"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="dz-title">اسحب الملفات هنا أو <span class="grad">اضغط للاختيار</span></div>
+              <div class="dz-sub">PDF، ZIP، DOCX، PPTX — يمكن رفع أكثر من ملف</div>
+              <input type="file" id="fileInput" multiple>
+            </div>
+            <div class="file-list" id="fileList"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="analyzeBtn">حلّل المشروع</button>
+        </form>
+
+        <div class="analysis-box" id="analysisBox">
+          <div class="analysis-head" id="analysisHead"></div>
+          <div class="analysis-body" id="analysisBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="brand-wave"></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">
+      <svg width="22" height="14" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 38 C10 20, 18 20, 26 38 C34 56, 42 4, 50 38 C58 56, 66 20, 74 38 C82 56, 90 30, 98 38"
+              fill="none" stroke="url(#footGrad)" stroke-width="9" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="footGrad" x1="0" y1="0" x2="100" y2="0">
+            <stop offset="0%" stop-color="#8DC63F"/><stop offset="50%" stop-color="#F5A623"/><stop offset="100%" stop-color="#96479A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span><b>شركة وادي مكة للتقنية</b> — منصة مشاريع التخرج</span>
+    </div>
+    <div class="footer-brand">جميع الحقوق محفوظة © 2026</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

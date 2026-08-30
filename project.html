@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مشاريع التخرج — وادي مكة للتقنية</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="brand-wave"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 38 C10 20, 18 20, 26 38 C34 56, 42 4, 50 38 C58 56, 66 20, 74 38 C82 56, 90 30, 98 38"
+              fill="none" stroke="url(#navGrad2)" stroke-width="9" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="navGrad2" x1="0" y1="0" x2="100" y2="0">
+            <stop offset="0%" stop-color="#8DC63F"/>
+            <stop offset="22%" stop-color="#29B6E8"/>
+            <stop offset="48%" stop-color="#F5A623"/>
+            <stop offset="70%" stop-color="#233E8B"/>
+            <stop offset="100%" stop-color="#96479A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="brand-name">
+        <b>شركة وادي مكة للتقنية</b>
+        <span>Wadi Makkah Company For Technology</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">رفع مشروع</a>
+      <a href="projects.html" class="active">المشاريع</a>
+    </div>
+  </div>
+</nav>
+
+<header class="projects-header">
+  <div class="container">
+    <h1>مشاريع <span style="background:var(--text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent">التخرج</span></h1>
+    <p>تصفّح جميع المشاريع المرفوعة والمحلّلة من قبل الوكيل الذكي.</p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث باسم المشروع أو الطالب…">
+        <svg class="search-ico" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <select class="filter-select" id="deptFilter">
+        <option value="">كل الأقسام</option>
+      </select>
+    </div>
+
+    <div class="projects-count" id="projectsCount"></div>
+
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<div class="brand-wave"></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">
+      <svg width="22" height="14" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 38 C10 20, 18 20, 26 38 C34 56, 42 4, 50 38 C58 56, 66 20, 74 38 C82 56, 90 30, 98 38"
+              fill="none" stroke="url(#footGrad2)" stroke-width="9" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="footGrad2" x1="0" y1="0" x2="100" y2="0">
+            <stop offset="0%" stop-color="#8DC63F"/><stop offset="50%" stop-color="#F5A623"/><stop offset="100%" stop-color="#96479A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span><b>شركة وادي مكة للتقنية</b> — منصة مشاريع التخرج</span>
+    </div>
+    <div class="footer-brand">جميع الحقوق محفوظة © 2026</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
