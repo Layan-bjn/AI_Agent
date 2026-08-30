@@ -2,74 +2,63 @@
   "name": "AI_Agent",
 
   "agents": [
-    "investment_orchestrator",
     "feasibility_agent",
     "startup_matching_agent",
     "incubator_agent",
     "quality_control_agent"
   ],
 
+  "manager_agent": "investment_orchestrator",
+  "manager_llm": "gemini/gemini-3.6-flash",
+
   "tasks": [
     {
       "name": "feasibility_task",
-
-      "description": "Evaluate the student's project idea: {project_idea}. Assess technical feasibility and commercial feasibility. Identify the main technical risks, commercial risks, and overall feasibility. Return a structured PASS or FAIL verdict.",
-
-      "expected_output": "A structured feasibility assessment containing technical_score, commercial_score, overall_score, verdict, and primary_reason.",
-
+      "description": "Evaluate the student's project idea: {project_idea}. Assess technical and commercial feasibility, noting the main risks. Return a structured PASS or FAIL verdict with concise reasoning.",
+      "expected_output": "A structured feasibility assessment containing technical_score, commercial_score, overall_score, verdict (PASS or FAIL), and primary_reason.",
       "agent": "feasibility_agent",
-
       "tools": []
     },
 
-    {
-      "name": "startup_matching_task",
+   {
+  "name": "startup_matching_task",
+  "description": "If feasibility verdict is PASS: Read knowledge/startup.json using FileReadTool. Match the idea against the startups. Guardrail: You MUST copy the exact value from the 'name' field in startup.json verbatim (e.g., 'Selsela Crowd Management (سلسلة لإدارة الحشود)'). Do NOT translate, summarize, or alter the startup name. If no match exists or verdict is FAIL, return match_found as false.",
+  "expected_output": "The exact 'name' string directly from startup.json, match_found (true/false), and justification.",
+  "agent": "startup_matching_agent",
+  "context": ["feasibility_task"],
+  "tools": ["FileReadTool"]
+},
 
-      "description": "Only execute this task when the feasibility verdict is PASS. Read knowledge/startup.json using FileReadTool. Compare the student's project with the startups in the file using domain, technologies, problem, target market, and use-case similarity. If a relevant startup exists, select exactly one startup and return its exact name as written in startup.json. Do not invent or modify startup names. Do not perform web searches.",
-
-      "expected_output": "A structured startup matching result containing match_found, startup_name, and justification.",
-
-      "agent": "startup_matching_agent",
-
-      "tools": ["FileReadTool"]
-    },
 
     {
       "name": "incubator_task",
-
-      "description": "Only execute this task when the feasibility verdict is PASS and the startup matching agent found zero relevant startups. Use SerperDevTool exactly once to find one active Saudi Arabian incubator or accelerator relevant to the student's project. Return exactly two most relevant recommended incubator or accelerator.",
-
-      "expected_output": "A structured incubator recommendation containing incubator_name, justification, and source.",
-
+      "description": "If feasibility verdict is PASS AND startup_matching_task found no relevant startup: Use SerperDevTool once to find active Saudi incubators/accelerators relevant to the sector. Return the top matching incubator. If a startup was already matched or verdict is FAIL, skip searching.",
+      "expected_output": "A structured incubator recommendation containing incubator_name, justification, and source URL.",
       "agent": "incubator_agent",
-
+      "context": ["feasibility_task", "startup_matching_task"],
       "tools": ["SerperDevTool"]
     },
 
     {
       "name": "quality_control_task",
-
-      "description": "Review the outputs from the feasibility, startup matching, and incubator agents. Verify that the workflow was followed correctly. If FAIL, there must be no startup or incubator recommendation. If PASS with a startup match, there must be exactly one  startup recommendations and no incubator. If PASS with no startup match, there must be exactly two most relevant incubator recommendations. Do not invent missing information.",
-
-      "expected_output": "A validated final report with Idea Summary, Verdict, and Recommendation or rejection reason.",
-
+      "description": "Review the outputs from feasibility_task, startup_matching_task, and incubator_task. Compile the final validated report. If FAIL: provide the idea summary, FAIL verdict, and rejection reason with no recommendations. If PASS with startup match: provide idea summary, PASS verdict, and the matched startup name with justification (no incubator). If PASS with no startup match: provide idea summary, PASS verdict, and the recommended incubator from the search.",
+      "expected_output": "The final report formatted strictly as 3 numbered sections: 1. Idea Summary, 2. Verdict, 3. Recommendation or Rejection Reason.",
+      "guardrail": "No markdown characters (*, #, _, `).Must contain 3 numbered sections (1, 2, and 3) and the literal word PASS or FAIL.",
+      "guardrail_max_retries": 1,
+      "markdown": false,
       "agent": "quality_control_agent",
-
+      "context": ["feasibility_task", "startup_matching_task", "incubator_task"],
       "tools": []
     }
   ],
 
   "process": "hierarchical",
-  "manager_llm": "gemini-3.1-flash-lite",
   "verbose": true,
-
   "memory": false,
-
-  "max_rpm": 5,
-
+  "max_rpm": 2,
   "cache": false,
 
   "inputs": {
-    "project_idea": "An AI-powered edge computing platform that integrates with existing industrial HVAC systems to dynamically optimize power consumption in commercial facilities, leveraging Saudi smart grid APIs and carbon credit monetization."
+    "project_idea": "A computer vision and deep learning platform that processes overhead camera feeds and IoT sensor data in real time to simulate pedestrian flow, detect crowd bottlenecks early, and dynamically optimize walking routes around high-density religious and public gathering zones."
   }
 }
