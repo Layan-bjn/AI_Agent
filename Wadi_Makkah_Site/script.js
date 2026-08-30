@@ -35,7 +35,8 @@
      // "recommendation": null
    }
 --------------------------------------------------------- */
-const AGENT_API_URL = "http://127.0.0.1:8000"; // <-- ضع هنا رابط سيرفر الـ crew، مثال: "http://localhost:8000/analyze"
+ // URL of the FastAPI agent endpoint. Adjust if the server runs on a different host/port.
+ const AGENT_API_URL = "http://localhost:8000/analyze"; // <-- ضع هنا رابط سيرفر الـ crew، مثال: "http://localhost:8000/analyze"
 
 async function analyzeWithAgent(payload) {
   const project_idea =
@@ -391,9 +392,16 @@ function initUploadPage() {
           </div>`;
       }
 
+      // إذا السيرفر ما قدر يستخرج JSON منظم من مخرجات الـ crew،
+      // يرجّع raw_output — نعرضه كنص كامل بدل ما نخسر النتيجة
+      const rawFallback = result.raw_output
+        ? `<pre style="white-space:pre-wrap;background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:14px;font-size:12.5px;max-height:340px;overflow:auto;">${result.raw_output}</pre>`
+        : "";
+
       analysisBody.innerHTML = `
         <p>${result.idea_summary || ""}</p>
         ${scoresHtml}
+        ${rawFallback}
         <div class="analysis-note" style="border-top:none;padding-top:0;margin-top:4px;">
           <b style="color:var(--text)">${pass ? "سبب القبول: " : "سبب الرفض: "}</b>${result.primary_reason || "—"}
         </div>
